@@ -1,3 +1,14 @@
+//Copyright (C) 2026 kwmsnode
+//
+//  This program is free software:
+//  you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License.
+// EX Extended Font Kit
+// EX拡張フォントキット
+// 非公式開発環境でEXFフォントを扱う。
+// アルファ0.1バージョン。GPL、保証なし。
+// kwmsnodeが作成。
+
 #include <graphics/drawing.h>
 #include <graphics/color.h>
 #include <graphics/text.h>
