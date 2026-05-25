@@ -5,7 +5,7 @@
 //  it under the terms of the GNU General Public License.
 // EX Extended Font Kit
 // EX拡張フォントキット
-// 非公式開発環境でEXFフォントを扱う。
+// 非公式開発環境でお好みのフォントを使用。
 // アルファ0.1バージョン。GPL、保証なし。
 // kwmsnodeが作成。
 
