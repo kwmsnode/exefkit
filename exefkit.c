@@ -6,7 +6,7 @@
 // EX Extended Font Kit
 // EX拡張フォントキット
 // 非公式開発環境でお好みのフォントを使用。
-// アルファ0.1バージョン。GPL、保証なし。
+// アルファ0.2バージョン。GPL、保証なし。
 // kwmsnodeが作成。
 
 #include <graphics/drawing.h>
@@ -29,15 +29,15 @@ int globalfd = -1;
 
 //EXFIDから初期化
 int exefkit_init_exfid(const unsigned char* exfid){
-  if(exfid == NULL) return -1;
   // グローバルファイルディスクリプタが0以上（使用中）ならそれを閉じて未使用に。
   if(globalfd >= 0){
       sys_close(globalfd);
       globalfd = -1;
   }
+  if(exfid == NULL) return -1;
   // 見つかったファイル名一覧を保存する配列を作成。
-  char namelistdrv[8][256];
-  char namelistcrd[8][256];
+  char namelistdrv[8][MAXPATHLEN];
+  char namelistcrd[8][MAXPATHLEN];
   // 作った配列に見つかったファイル名一覧を格納、返り値を変数に保存。
   const int exfcountdrv = exefkit_getexflist("\\\\drv0\\", namelistdrv);
   const int exfcountcrd = exefkit_getexflist("\\\\crd0\\exfs\\", namelistcrd);
@@ -261,10 +261,13 @@ int exefkit_drawfont24(int index, int basex, int basey, unsigned short color, in
 }
 
 // sizeは16か24の倍数にします。文字はL"あいう"のように指定します。
-void exefkit_drawtext(const wchar_t *text, int basex, int basey, int size, unsigned short color){
+void exefkit_drawtext(const wchar_t* text, int basex, int basey, int size, unsigned short color){
   if(text == NULL) return;
   if(globalfd < 0) return;
   if (size % 16 != 0 && size % 24 != 0) {
+    return;
+  }
+  if(size < 16){
     return;
   }
   int current = 0;
